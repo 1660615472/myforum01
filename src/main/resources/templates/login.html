@@ -51,7 +51,10 @@
 </head>
 <body>
 <div id="form">
-    <form method="post">
+    <form action="/login"method="post">
+        <div>
+            <h2>IT论坛</h2>
+        </div>
         <div class="row">
             <label for="name">Username</label>
             <input type="text" name="name" id="name">
@@ -70,7 +73,7 @@
     $(function () {
         $("#register").click(function () {
             // 跳转
-            location.href = 'register';
+            location.href = 'userRegister';
             return false;
         });
     });

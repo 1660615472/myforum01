@@ -47,6 +47,7 @@
         }
 
         #header{
+
             width: 100%;
             height: 70%;
             position: relative;
@@ -57,7 +58,13 @@
             height: 65px;
             margin-right: 20px;
         }
-
+        #textarea1{
+            width: 500px;
+            height: 400px;
+        }
+        #d1+#header{
+            margin-top: 50px;
+        }
 
 
     </style>
@@ -65,20 +72,21 @@
 <body>
 
     <div id="d1">
-        <div  th:object="${title}">
+        <div  th:object="${title}"><!--标题-->
             <h2 th:text="*{title}"></h2>
+            <h3 th:text="*{message}"></h3><!--内容-->
         </div>
     </div>
 <div id="header">
     <div id="d1-1">
-            <div th:each="ava: ${avalist}" id="d5">
+            <div th:each="ava: ${avalist}" id="d5"><!--头像-->
                 <img id="avatar" th:src="@{/avatar/}+${ava}" >
             </div>
         </div>
     <div id="d4">
         <div th:each="mes: ${message}" id="d2">
-            <h3 th:text="${mes.cname}+'回复说:'+${mes.message}"></h3>
-            <h6 th:text="${mes.floor}+'楼:回复时间'"></h6>
+            <h3 th:text="'用户'+${mes.cname}+'回复说:'+${mes.message}"></h3>
+            <h3 th:text="${mes.floor}+'楼:回复时间'"></h3>
         </div>
     </div>
     <div id="d6">
@@ -90,10 +98,10 @@
 
 
 <div id="d3" th:object="${title}">
-    <a th:href="@{/getTitList}">返回列表</a>
-    <form th:action="@{/inser/}+*{id}" method="post">
-        <textarea name="message" id="" cols="40" rows="10"></textarea>
-        <input type="submit"value="回复">
+    <a th:href="@{/getPage}">返回主页</a>
+    <form th:action="@{/Replies/}+*{id}" method="post">
+        <textarea name="message" id="textarea1" cols="40" rows="10"></textarea>
+        <input type="submit"value="回复ta">
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

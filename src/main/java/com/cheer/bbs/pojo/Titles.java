@@ -1,11 +1,17 @@
 package com.cheer.bbs.pojo;
 
+import lombok.Data;
+/*
+* 帖子bean
+* */
+@Data
 public class Titles {
     private int id;
     private String cname;
     private String title;
     private String message;
     private String date;
+    private Integer comment;
 
     public Titles() {
     }
@@ -17,55 +23,5 @@ public class Titles {
         this.date = date;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Titles{" +
-                "id=" + id +
-                ", cname='" + cname + '\'' +
-                ", title='" + title + '\'' +
-                ", message='" + message + '\'' +
-                ", date='" + date + '\'' +
-                '}';
-    }
 }

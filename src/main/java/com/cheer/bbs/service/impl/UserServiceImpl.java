@@ -1,8 +1,8 @@
 package com.cheer.bbs.service.impl;
 
-import com.cheer.bbs.dao.ProMapper;
-import com.cheer.bbs.pojo.Progra;
-import com.cheer.bbs.service.ProService;
+import com.cheer.bbs.dao.UserDao;
+import com.cheer.bbs.pojo.User;
+import com.cheer.bbs.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,31 +11,31 @@ import java.util.List;
 
 @Transactional
 @Service
-public class ProServiceImpl implements ProService {
+public class UserServiceImpl implements UserService {
     @Resource
-    private ProMapper proMapper;
+    private UserDao userDao;
 
     @Override
-    public List<Progra> getList() {//测试OK
-        List<Progra> list = proMapper.getList();
+    public List<User> getList() {//测试OK
+        List<User> list = userDao.getList();
         return list;
     }
 
     @Override
-    public Progra getPro(String name, String password) {
-        Progra pro = this.proMapper.getPro(name, password);
+    public User getUser(String name, String password) {
+        User pro = this.userDao.getUser(name, password);
         return pro;
     }
 
     @Override
-    public Progra getPro2(String name) {
-        Progra pro = this.proMapper.getPro2(name);
+    public User getUserByUserName(String name) {
+        User pro = this.userDao.getUserByUserName(name);
         return pro;
     }
 
     @Override
-    public int insPro(Progra pro) {//测试OK
-        int i = this.proMapper.insPro(pro);
+    public int insUser(User pro) {//测试OK
+        int i = this.userDao.insUser(pro);
         if(i>0){
             System.out.println("插入成功！");
             return i;
@@ -46,8 +46,8 @@ public class ProServiceImpl implements ProService {
     }
 
     @Override
-    public int update(Progra pro) {
-       int i = this.proMapper.update(pro);
+    public int update(User pro) {
+       int i = this.userDao.update(pro);
         if(i>0){
             System.out.println("更新成功！");
             return i;
@@ -58,7 +58,7 @@ public class ProServiceImpl implements ProService {
 
     @Override
     public int delete(int id) {
-        int i = this.proMapper.delete(id);
+        int i = this.userDao.delete(id);
         if(i>0){
             System.out.println("更新成功！");
             return i;

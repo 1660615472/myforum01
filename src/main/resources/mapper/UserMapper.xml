@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheer.bbs.dao.UserDao">
+
+    <!--//查询List集合-->
+
+    <select id="getList" resultType="com.cheer.bbs.pojo.User">
+        select * from user
+    </select>
+
+
+    <select id="getUser" resultType="com.cheer.bbs.pojo.User">
+        select * from user where name=#{name} and password=#{password}
+    </select>
+    <select id="getUserByUserName" resultType="com.cheer.bbs.pojo.User">
+        select * from user where name=#{name}
+    </select>
+
+
+    <!--useGeneratedKeys=“true”使用自增主键获取主键策略-->
+    <insert id="insUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user value(default,#{name}, #{password}, #{hiredate},#{avatar})
+    </insert>
+
+
+
+    <update id="update">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+            <if test="hiredate!=null">
+                hiredate=#{hiredate},
+            </if>
+            <if test="avatar!=null">
+                avatar=#{avatar}
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id=#{id}
+    </delete>
+
+</mapper>

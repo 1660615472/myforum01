@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--定义命名空间 namespace-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            margin: 50px auto 0 auto;
+            border-collapse: collapse;
+            text-align: center;
+            vertical-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            width: 100px;
+            height: 30px;
+        }
+        #avatar,#avatar1 {
+            width: 45px;
+            height: 45px;
+            margin-right: 20px;
+        }
+
+        #d1{
+            position: absolute;
+            float: left;
+            top: 100px;
+            left:550px;
+        }
+        #d3{
+            position: absolute;
+            float: left;
+            top: 130px;
+            left:1000px;
+        }
+        #d2,#d4{
+            margin-top: 20px;
+            height: 42px;
+        }
+
+        #d1--1{
+            position: absolute;
+            float: left;
+            top: 100px;
+            left: 500px;
+        }
+
+        #title{
+            width: 100%;
+            height: 70%;
+            position: relative;
+            margin-top: -70px;
+        }
+        .top{
+            width: 100%;
+            height: 70px;
+            background-color: wheat;
+
+        }
+        .top_content{/*顶部内容*/
+            width: 75%;
+            height: 70px;
+            margin: 0px auto;/*auto自适应*/
+            background-color:wheat;
+        }
+        .row1{
+            float: right;
+        }
+
+        #u1 {
+            display: inline;
+            margin-right: 60px;
+        }
+
+        #u2 {
+            display: inline;
+        }
+
+        #title {
+            margin-left: -500px;
+        }
+
+        body {
+            background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563109725163&di=c8ade86399390081526f56e2e2378024&imgtype=0&src=http%3A%2F%2Fimgsa.baidu.com%2Fexp%2Fw%3D500%2Fsign%3Db496c7df9e510fb378197797e932c893%2Ff9198618367adab418b692258bd4b31c8701e476.jpg");
+        }
+
+        .mr-sm-2{
+            width:400px;
+            height: 36px;
+        }
+
+        .website-info{
+
+            margin-top: 50px;
+            margin-left: 1130px;
+        }
+
+
+
+    </style>
+</head>
+<body>                      <!--获得用户对象-->
+<div id="header" th:object="${#session.getAttribute('user')}">
+    <div class="top"><!--网站头部div-->
+        <div class="top_content">
+            <div class="row1">
+                <!-- 登陆 -->
+                <div id="u1" class="text ">
+                    <a href="login">登录其他账号</a>
+                </div>
+                <!--注册 -->
+                <div id="u2" class="text ">
+                    <a href="userRegister">注册</a>&nbsp;
+                </div>
+            </div>                  <!--@｛/title｝是url链接-->
+            <span></span><a th:href="@{/title}">我要发帖</a>
+            <!--用户对象的name属性，/userInfo/name 传到后台方法-->
+            <a th:href="@{/userInfo/}+*{name}" th:text="*{name}+':个人中心'"></a>
+            <!--从c盘avatar文件中找对应的图片-->
+            <img id="avatar1" th:src="@{/avatar/}+*{avatar}">
+            <span id="user"></span><a href="outLogin">退出登陆</a>
+        </div><!--头部里的小div-->
+    </div>
+    <!--中间的导航栏-->
+<div id="webNavigation">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">技术 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">生活 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">创意</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">数码</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">好玩</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">城市</a>
+            </li>
+        </ul>
+        <!--搜索功能-->
+        <form action="searchTitles" method="post" class="form-inline my-2 my-lg-0">
+            <input class=" mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchContext">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+</div>
+<div>
+    <h2>帖子专区</h2>
+</div>
+<div id="title">
+    <div id="d1--1">
+        <div th:each="ava: ${avatarlist}" id="d4">
+            <img id="avatar" th:src="@{/avatar/}+${ava}">
+        </div>
+    </div>
+    <div id="d1">
+        <div th:each="tit: ${titlist}" id="d2">
+            <span>标题：</span> <a th:href="@{/titleContent/}+${tit.id}" th:text="${tit.title}"></a><br>
+           <span id="author"><span >作者：</span> <a th:href="@{/userInfo/}+${tit.cname}" th:text="${tit.cname}"></a></span>
+           <span id="comment"><span >回复数：</span> <span th:text="${tit.comment}"></span></span>
+            <h7 th:text="'..发帖时间:'+${tit.date}"></h7>
+        </div>
+    </div>
+
+</div>
+
+<!--   主题内容-->
+<div class="website-info">
+    <span>今日热门话题:</span>
+    <!--   本站状况-->
+    <div><span>本站状况:</span></div>
+    <div>
+        <span>注册会员人数:</span><span th:text="${userNum}"></span><br>
+        <span>主题:</span><span th:text="${TitleNum}"></span><br>
+        <span>交流:</span><span th:text="${messageNum}"></span>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+</script>
+</body>
+</html>

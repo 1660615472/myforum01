@@ -1,10 +1,11 @@
-package com.cheer.bbs.service;
+package com.cheer.bbs.dao;
 
 import com.cheer.bbs.pojo.Messages;
 
 import java.util.List;
 
-public interface MesService {
+public interface MesDao {
+    //通过帖子id查找对应帖子集合
     List<Messages> getMesListByTid(int tid);
 
     int insertMes(Messages messages);

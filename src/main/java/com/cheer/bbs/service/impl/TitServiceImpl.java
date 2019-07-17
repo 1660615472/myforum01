@@ -1,7 +1,6 @@
 package com.cheer.bbs.service.impl;
 
-import com.cheer.bbs.dao.TitMapper;
-import com.cheer.bbs.pojo.Progra;
+import com.cheer.bbs.dao.TitleDao;
 import com.cheer.bbs.pojo.Titles;
 import com.cheer.bbs.service.TitService;
 import org.springframework.stereotype.Service;
@@ -14,23 +13,23 @@ import java.util.List;
 @Service
 public class TitServiceImpl implements TitService {
     @Resource
-    private TitMapper titMapper;
+    private TitleDao titleDao;
 
     @Override
     public List<Titles> getTitList() {
-        List<Titles> titList = this.titMapper.getTitList();
+        List<Titles> titList = this.titleDao.getTitList();
         return titList;
     }
 
     @Override
-    public Titles getTit(int id) {
-        Titles tit = this.titMapper.getTit(id);
+    public Titles getTitById(int id) {
+        Titles tit = this.titleDao.getTitById(id);
         return tit;
     }
 
     @Override
-    public int insPro(Titles tit) {
-        int i = this.titMapper.insPro(tit);
+    public int insertTitles(Titles tit) {
+        int i = this.titleDao.insertTitles(tit);
         if(i>0){
             System.out.println("插入成功！");
             return i;
@@ -41,7 +40,7 @@ public class TitServiceImpl implements TitService {
 
     @Override
     public int update(Titles tit) {
-        int update = this.titMapper.update(tit);
+        int update = this.titleDao.update(tit);
         if(update>0){
             System.out.println("插入成功");
             return update;
@@ -53,19 +52,32 @@ public class TitServiceImpl implements TitService {
 
     @Override
     public int delete(int id) {
-        int i = this.titMapper.delete(id);
+        int i = this.titleDao.delete(id);
         return i;
     }
 
     @Override
-    public int tid() {
-        int tid = this.titMapper.tid();
+    public int selectNewTitle() {
+        int tid = this.titleDao.selectNewTitle();
         return tid;
     }
 
     @Override
-    public List<Titles> getforname2Tit(String cname) {
-        List<Titles> name2List = this.titMapper.getforname2Tit(cname);
+    public List<Titles> getTitleListByCname(String cname) {
+        List<Titles> name2List = this.titleDao.getTitleListByCname(cname);
         return name2List;
+    }
+
+    //查询帖子对应的回复数
+    @Override
+    public int selectcommentNumByid(int id) {
+       return titleDao.selectcommentNumByid ( id );
+    }
+
+
+    //搜索帖子功能
+    @Override
+    public List<Titles> searchTitles(String searchContext) {
+       return titleDao.searchTitles ( searchContext);
     }
 }

@@ -18,19 +18,19 @@
         <th>hiredate</th>
         <th>avatar</th>
     </tr>
-    <tr th:each="pro: ${proinfo}">
-        <td th:text="${pro.name}"></td>
-        <td th:text="${pro.hiredate}"></td>
-        <td><img id="avatar" th:src="@{/avatar/}+${pro.avatar}"></td>
+    <tr th:each="user: ${user}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.hiredate}"></td>
+        <td><img id="avatar" th:src="@{/avatar/}+${user.avatar}"></td>
     </tr>
 </table>
 
 <div id="title">
 
     <div id="d1" >
-        <div th:each="tit: ${nameTie}" id="d2">
-            <h3 th:text="'他的帖子：'"></h3><a th:href="@{/onetitle/}+${tit.id}" th:text="${tit.title}"></a><br>
-            <h3 th:text="'..发帖时间:'+${tit.date}"></h3>
+        <div th:each="tit: ${titles}" id="d2">
+            <h3 th:text="'我的帖子：'"></h3><a th:href="@{/titleContent/}+${tit.id}" th:text="${tit.title}"></a><br>
+            <h3 th:text="'发帖时间:'+${tit.date}"></h3>
         </div>
     </div>
 </div>

@@ -1,16 +1,13 @@
 package com.cheer.bbs.service.impl;
 
-import com.cheer.bbs.dao.ProMapper;
-import com.cheer.bbs.pojo.Progra;
+import com.cheer.bbs.dao.UserDao;
 import org.junit.Test;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
-public class ProServiceImplTest {
+public class UserServiceImplTest {
     @Resource
-    ProMapper proMapper;
+    UserDao userDao;
 
     @Test
     public void getList() {
