@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>reachTitles</title>
+</head>
+<body>
+<div id="homePage">
+    <a th:href="@{/getPage}">返回首页</a>
+</div>
+<div id="d1">
+    <div th:each="searchTitles: ${searchTitles}" id="d2">
+        <span>标题：</span> <a th:href="@{/titleContent/}+${searchTitles.id}" th:text="${searchTitles.title}"></a><br>
+        <span id="author"><span >作者：</span> <a th:href="@{/userInfo/}+${searchTitles.cname}" th:text="${searchTitles.cname}"></a></span>
+        <span id="comment"><span >回复数：</span> <span th:text="${searchTitles.comment}"></span></span>
+        <h7 th:text="'..发帖时间:'+${searchTitles.date}"></h7>
+    </div>
+</div>
+
+
+</body>
+</html>
